@@ -1,0 +1,16 @@
+[package]
+name = "panelz-core"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+description.workspace = true
+repository.workspace = true
+license.workspace = true
+
+[dependencies]
+async-trait = "0.1.89"
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = "1.0.149"
+sysinfo = "0.38.4"
+tokio = { version = "1.51.0", features = ["full"] }
+uuid = {version="1.23.0",features = ["v4", "fast-rng", "serde"]}
