@@ -1,5 +1,5 @@
 use async_trait::async_trait;
-use panelz_core::sysinfo::*;
+use panelz_core::infosys::*;
 use std::sync::Arc;
 use sysinfo::{Disks, Networks, Pid, System};
 use tokio::sync::RwLock;

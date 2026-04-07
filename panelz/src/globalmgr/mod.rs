@@ -1,8 +1,6 @@
 use std::{sync::Arc, time::Duration};
 
-use panelz_core::{
-    fsystem::manager::FsManager, sysinfo::manager::SysManager, usersys::UserManager,
-};
+use panelz_core::{filesys::FsManager, infosys::SysManager, usersys::UserManager};
 
 use crate::{
     cfgtable::ConfigKey,

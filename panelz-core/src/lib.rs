@@ -1,5 +1,4 @@
-pub mod fsystem;
-pub mod sysinfo;
+pub mod filesys;
+pub mod infosys;
+pub mod plugsys;
 pub mod usersys;
-pub mod zconfig;
-pub mod zplugin;

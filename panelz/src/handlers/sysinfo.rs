@@ -2,7 +2,7 @@ use std::sync::Arc;
 
 use crate::globalmgr::GlobalManager;
 use axum::{Json, extract::State};
-use panelz_core::sysinfo::*;
+use panelz_core::infosys::*;
 // --- Handler 实现 ---
 pub async fn get_cpu_handler(State(gm): State<Arc<GlobalManager>>) -> Json<Vec<CpuInfo>> {
     Json(gm.sys.provider.get_cpu_info().await)

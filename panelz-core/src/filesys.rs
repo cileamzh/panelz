@@ -2,9 +2,8 @@ use async_trait::async_trait;
 use serde::{Deserialize, Serialize};
 use std::path::{Path, PathBuf};
 use std::pin::Pin;
+use std::sync::Arc;
 use tokio::io::AsyncRead; // 需要 tokio
-
-pub mod manager;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct MountPoint {
@@ -23,11 +22,24 @@ pub struct Entry {
     pub mime_type: String,         // 增加 MIME 类型方便前端展示
 }
 
+pub struct FsManager {
+    pub provider: Arc<dyn ProvideFs>,
+}
+
+impl FsManager {
+    /// 初始化时注入具体的 Provider 实现
+    pub fn new(provider: Arc<dyn ProvideFs>) -> Self {
+        Self { provider }
+    }
+}
+
 #[async_trait]
 pub trait ProvideFs: Send + Sync {
+    // 检查 路径合法
+    async fn validate_virtual_path(&self, virt_path: &str) -> std::io::Result<MountPoint>;
     // --- 路径转换 (核心安全逻辑) ---
     /// 将虚拟路径转换为物理路径，并校验是否越界（防止路径穿越攻击）
-    fn resolve_path(&self, virt_path: &str) -> std::io::Result<PathBuf>;
+    async fn resolve_path(&self, virt_path: &str) -> std::io::Result<PathBuf>;
 
     // --- 基础读取功能 ---
     async fn scan_directory(&self, path: &Path) -> std::io::Result<Vec<Entry>>;

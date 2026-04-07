@@ -6,7 +6,7 @@ use axum::{
     http::{Response, StatusCode, header},
     response::IntoResponse,
 };
-use panelz_core::fsystem::Entry;
+use panelz_core::filesys::Entry;
 use serde::Deserialize;
 use std::path::Path as StdPath;
 use std::sync::Arc;

@@ -20,3 +20,4 @@ anyhow = "1.0.102"
 uuid = {version="1.23.0",features = ["v4", "fast-rng", "serde"]}
 mime_guess = "2.0.5"
 tokio-util = "0.7.18"
+chrono = "0.4.44"
